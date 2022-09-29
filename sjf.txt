@@ -1,0 +1,15 @@
+1,93,power,4,3
+2,28,sum,2,10
+3,35,fibonacci,0,11
+4,6,product,15,18
+5,52,sum,22,25
+6,2,product,3,9
+7,43,power,2,8
+8,110,power,10,2
+9,71,fibonacci,0,7
+10,68,product,9,12
+11,89,sum,31,40
+12,11,power,5,4
+13,14,product,2,10
+14,26,fibonacci,0,14
+15,45,sum,3,20

@@ -1,0 +1,92 @@
+
+PROJECT 2 Deliverables
+
+Your project deliverables are to be posted to CUNY Blackboard using the Project 2 link. 
+
+No ZIP Files will be accepted.
+
+1) Only one source code file as follows with filename format showing your last name and student id: MYLASTNAME_MYSTUDENTID.c  
+   Replace MYLASTNAME with your own actual last name and MYSTUDENTID with your own actual CUNY ID.  
+
+ a) At top of the file: your full name in comments, for example:  // First_Name Last_Name 
+
+
+ b) In-line code comments no fewer than every 5 lines of code which describe your algorithmic steps in plain English language.
+    That is, I do not want to see literal syntax transcriptions of the code.  
+
+    Your first in-line code comment is the gcc command used to compile and link your source code file into an execuutable file.
+
+2) An MS Word or PDF document with a write-up of your software design and an explanation of the issues encountered and resolved. (1 page)
+   The write-up is essay style with no bullet points nor itemized lists nor source code nor pseudo-code listings.
+   Filename format is MYLASTNAME_MYSTUDENTID.doc (or pdf).
+
+3) One output text file per each input text file that I have included in CUNY Blackboard for the project.
+   That is, you will execute your program three times using each of the three nonpreemptive scheduling algorithms(FCFS, SJF, PRIORITY) as follows:
+
+   ./MYLASTNAME_MYSTUDENTID.exe FCFS FCFS.txt MYLASTNAME_MYSTUDENTID_FCFS.out
+   
+   ./MYLASTNAME_MYSTUDENTID.exe SJF SJF.txt MYLASTNAME_MYSTUDENTID_SJF.out
+   
+   ./MYLASTNAME_MYSTUDENTID.exe PRIORITY PRIORITY.txt MYLASTNAME_MYSTUDENTID_PRIORITY.out
+
+
+
+Project 2 Description and Requirements: This summarizes the materials already presented in lecture
+--------------------------------------------------------------------------------------------------
+
+(A) In this second project you will create a multithreaded POSIX pthreads program that has the following components to schedule and execute operations 
+ (our so-called "processes" for the sake of this project) which you will implement as functions as given in lecture. Please refer to your lecture notes.
+
+(B) List of Components
+    ------------------
+   
+  Threads:  Main Thread, Scheduler-Dispatcher pthread, Logger pthread
+
+  MiniPCB data structure for each "process" to be scheduled from the input file.
+
+  Ready Queue that will contain the address of each miniPCB.
+
+  The first-in-first-out (FIFO) data structure that will be used for inter-thread communication between the Scheduler-Dispatcher and Logger pthreads.
+  This FIFO has two operations, send() and recv(), to support message-based communication between the two pthreads.
+
+  A pthread mutex that is used as a lock to sychronize access to the FIFO by the Scheduler-Dispatcher and Logger pthreads.
+
+  Array : function pointer array with addresses of the sum, product, power, and fibonacci functions. Each function takes two input integer 
+          parameters and returns an integer return value. 
+
+  Array : function pointer array with addresses of the FCFS scheduler, SJF scheduler, and Priority scheduler. Each scheduler function takes
+          the address of the ready queue as the input parameter and returns the address of the miniPCB of the "process" chosen by the 
+          scheduler to be executed.
+
+  Your design must include and use these components as specified above. You may add other components as you see necessary. 
+
+
+(C) The Project is to be implemented using the POSIX pthreads API. No other multithread API libraries will be accepted.
+
+(D) The main() thread will perform initialization of all components.
+
+(E) You are responsible for designing and implementing a strategy for the termination of the Scheduler-Dispatcher and Loggger threads after all "processes"
+    have been scheduled and executed.  
+
+(F) You may use the C standard library I/O functions to read the input files but you must use the POSIX system calls to create and write the output files.
+    You will use malloc() to dynamically allocate memory from the heap.
+
+(G) I have attached a photo snapshot of the whiteboard project depiction of the components as presented in lecture for your reference.
+ 
+(H) Input file formats are column-delimitted for each of the FCFS, SJF, and Priority scheduling input files.
+
+    Note 1: Process arrival time is by increasing Process #.
+    Note 2: All processes can be assumed to be in the Ready Queue by the time the Scheduler-Dispatcher begins to invoke the scheduling algorithm.
+    Note 3: The tie-breaker rule for Priority scheduling is simply to order processes with the same priority by arrival time without
+            doing Round Robin preemption. Priority level 1 is the best priority.
+
+    FCFS input file format of each line:     	 Process #,Operation Name,input parameter 1,input parameter 2
+
+    SJF  input file format of each line:    	 Process #,Next CPU Burst Time,Operation Name,input parameter 1,input parameter 2
+
+    Priority input file format of each line:	 Process #,Priority #,Operation Name,input parameter 1,input parameter 2.
+
+
+(I) Output file format of each line (for all scheduling input files): Operation Name,input parameter 1,input parameter 2, return value
+
+  
